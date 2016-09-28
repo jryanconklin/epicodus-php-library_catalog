@@ -80,9 +80,14 @@
             $GLOBALS['DB']->exec("DELETE FROM copies;");
         }
 
-        static function findById()
+        static function findById($search_id)
         {
-
+            $copies = Copy::getAll();
+            foreach($copies as $copy){
+                if ($copy->getId() == $search_id) {
+                    return $copy;
+                }
+            }
         }
 
 

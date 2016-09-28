@@ -162,6 +162,33 @@
             $this->assertEquals([$test_copy2], $result);
         }
 
+
+        function test_findById()
+        {
+            //Arrange
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            $available1 = true;
+            $book_id1 = 2;
+            $id1 =1;
+            $test_copy2 = new Copy($available1, $book_id1, $id1);
+            $test_copy2->save();
+
+            $search_id = $test_copy2->getId();
+
+            //Act
+            $result = Copy::findById($search_id);
+
+            //Assert
+            $this->assertEquals($test_copy2, $result);
+        }
+
+
+
 //End Test
     }
 ?>
