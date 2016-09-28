@@ -54,7 +54,7 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM copies WHERE id = {$this->getId()};");
         }
 
 

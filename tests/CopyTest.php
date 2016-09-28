@@ -139,6 +139,29 @@
             $this->assertEquals([$test_copy], $result);
         }
 
+        function test_delete()
+        {
+            //Arrange
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            $available1 = true;
+            $book_id1 = 2;
+            $id1 =1;
+            $test_copy2 = new Copy($available1, $book_id1, $id1);
+            $test_copy2->save();
+
+            //Act
+            $test_copy->delete();
+            $result = Copy::getAll();
+
+            //Assert
+            $this->assertEquals([$test_copy2], $result);
+        }
+
 //End Test
     }
 ?>
