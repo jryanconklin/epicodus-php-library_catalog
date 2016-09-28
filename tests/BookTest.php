@@ -16,8 +16,8 @@
     {
         protected function tearDown()
         {
-            // Author::deleteAll();
-            // Book::deleteAll();
+            Author::deleteAll();
+            Book::deleteAll();
             // Copy::deleteAll();
             // Patron::deleteAll();
             // Checkout::deleteAll();
@@ -102,7 +102,106 @@
             $this->assertEquals($new_genre, $result);
         }
 
+        function test_save()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+            $test_book->save();
 
+            //Act
+            $result = Book::getAll();
+
+            //Assert
+            $this->assertEquals([$test_book], $result);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+            $test_book->save();
+
+            $title2 = "Lord of the Rings";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2->save();
+
+            //Act
+            $result = Book::getAll();
+
+            //Assert
+            $this->assertEquals([$test_book, $test_book2], $result);
+        }
+
+        function test_findById()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+            $test_book->save();
+
+            $title2 = "Lord of the Rings";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2->save();
+
+            //Act
+            $search_id = $test_book2->getId();
+            $result = $test_book2->findById($search_id);
+
+            //Assert
+            $this->assertEquals($test_book2, $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $id = null;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+            $test_book->save();
+
+            $new_title = "Lion King";
+            $test_book->setTitle($new_title);
+
+            //Act
+            $test_book->update();
+            $result = $test_book->getTitle();
+
+            //Assert
+            $this->assertEquals("Lion King", $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $id = null;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+            $test_book->save();
+            $test_book->delete();
+
+            $title2 = "Lord of the Rings";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2->save();
+
+            //Act
+            $result = Book::getAll();
+
+            //Assert
+            $this->assertEquals([$test_book2], $result);
+        }
 
 
 //End Test

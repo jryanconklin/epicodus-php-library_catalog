@@ -44,17 +44,20 @@
 //Regular Methods
         function save()
         {
-
+            $GLOBALS['DB']->exec(
+                    "INSERT INTO books (title, genre)
+                    VALUES ('{$this->title}', '{$this->genre}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         function update()
         {
-
+            $GLOBALS['DB']->exec("UPDATE books SET title = '{$this->title}', genre = '{$this->genre}' WHERE id = {$this->id} ;");
         }
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->id};");
         }
 
 
@@ -63,17 +66,31 @@
 //Static Methods
         static function getAll()
         {
-
+            $all_books = array();
+            $books = $GLOBALS['DB']->query("SELECT * FROM books;");
+            foreach($books as $book) {
+                $id = $book['id'];
+                $title = $book['title'];
+                $genre = $book['genre'];
+                $new_book = new Book($id, $title, $genre);
+                array_push($all_books, $new_book);
+            }
+            return $all_books;
         }
 
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM books");
         }
 
-        static function findById()
+        static function findById($search_id)
         {
-
+            $books = Book::getAll();
+            foreach ($books as $book) {
+                if ($book->getId() == $search_id) {
+                    return $book;
+                }
+            }
         }
 
 
