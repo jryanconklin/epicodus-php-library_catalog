@@ -36,10 +36,10 @@
 
             //Assert
             $this->assertEquals(1, $result);
-       }
+        }
 
-       function test_getName()
-       {
+        function test_getName()
+        {
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
@@ -50,7 +50,7 @@
 
             //Assert
             $this->assertEquals($name, $result);
-      }
+        }
 
 
         function test_setName()
@@ -86,7 +86,44 @@
             $this->assertEquals([$test_author], $result);
         }
 
+        function test_getAll()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($id, $name);
+            $test_author->save();
 
+            $name2 = "Katy Henning";
+            $test_author2 = new Author($id, $name2);
+            $test_author2->save();
+
+            //Act
+            $result = Author::getAll();
+
+            //Assert
+            $this->assertEquals([$test_author, $test_author2], $result);
+        }
+
+        function test_findById()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($id, $name);
+            $test_author->save();
+
+            $name2 = "Katy Henning";
+            $test_author2 = new Author($id, $name2);
+            $test_author2->save();
+
+            //Act
+            $search_id = $test_author2->getId();
+            $result = Author::findById($search_id);
+
+            //Assert
+            $this->assertEquals($test_author2, $result);
+        }
 
 
 
