@@ -175,10 +175,10 @@
 
             //Act
             $test_book->update();
-            $result = $test_book->getTitle();
+            $result = Book::getAll();
 
             //Assert
-            $this->assertEquals("Lion King", $result);
+            $this->assertEquals([$test_book], $result);
         }
 
         function test_delete()
