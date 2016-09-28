@@ -18,8 +18,8 @@
         protected function tearDown()
         {
             Author::deleteAll();
-            // Book::deleteAll();
-            // Copy::deleteAll();
+            Book::deleteAll();
+            Copy::deleteAll();
             // Patron::deleteAll();
             // Checkout::deleteAll();
         }
