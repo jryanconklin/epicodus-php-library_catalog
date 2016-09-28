@@ -5,7 +5,7 @@ USE library_catalog;
 
 CREATE TABLE authors (
     id serial PRIMARY KEY,
-    name int
+    name VARCHAR(70)
 );
 
 CREATE TABLE books (
