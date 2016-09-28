@@ -29,7 +29,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
 
             //Act
             $result = $test_book->getId();
@@ -44,7 +44,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
 
             //Act
             $result = $test_book->getTitle();
@@ -59,7 +59,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
 
             //Act
             $result = $test_book->getGenre();
@@ -74,7 +74,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
 
             //Act
             $new_title = "City Book";
@@ -91,7 +91,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
 
             //Act
             $new_genre = "Awesome";
@@ -108,7 +108,7 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
             $test_book->save();
 
             //Act
@@ -124,12 +124,12 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
             $test_book->save();
 
             $title2 = "Lord of the Rings";
             $genre2 = "Fantasy";
-            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2 = new Book($title2, $genre2, $id);
             $test_book2->save();
 
             //Act
@@ -145,12 +145,12 @@
             $id = 1;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
             $test_book->save();
 
             $title2 = "Lord of the Rings";
             $genre2 = "Fantasy";
-            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2 = new Book($title2, $genre2, $id);
             $test_book2->save();
 
             //Act
@@ -167,7 +167,7 @@
             $id = null;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
             $test_book->save();
 
             $new_title = "Lion King";
@@ -187,13 +187,13 @@
             $id = null;
             $title = "Jungle Book";
             $genre = "childrens";
-            $test_book = new Book($id, $title, $genre);
+            $test_book = new Book($title, $genre, $id);
             $test_book->save();
             $test_book->delete();
 
             $title2 = "Lord of the Rings";
             $genre2 = "Fantasy";
-            $test_book2 = new Book($id, $title2, $genre2);
+            $test_book2 = new Book($title2, $genre2, $id);
             $test_book2->save();
 
             //Act

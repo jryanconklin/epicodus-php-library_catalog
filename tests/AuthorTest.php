@@ -29,7 +29,7 @@
             //Arrange
             $id = 1;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
 
             //Act
             $result = $test_author->getId();
@@ -43,7 +43,7 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
 
             //Act
             $result = $test_author->getName();
@@ -58,7 +58,7 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
 
             $new_name = "Stieg Larsson";
 
@@ -75,7 +75,7 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
 
             //Act
             $test_author->save();
@@ -91,11 +91,11 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
             $test_author->save();
 
             $name2 = "Katy Henning";
-            $test_author2 = new Author($id, $name2);
+            $test_author2 = new Author($name2, $id);
             $test_author2->save();
 
             //Act
@@ -110,11 +110,11 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
             $test_author->save();
 
             $name2 = "Katy Henning";
-            $test_author2 = new Author($id, $name2);
+            $test_author2 = new Author($name2, $id);
             $test_author2->save();
 
             //Act
@@ -130,7 +130,7 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
             $test_author->save();
 
             $new_name = "Katy Henning";
@@ -150,7 +150,7 @@
             //Arrange
             $id = null;
             $name = "JRR Tolkien";
-            $test_author = new Author($id, $name);
+            $test_author = new Author($name, $id);
             $test_author->save();
 
             // Act

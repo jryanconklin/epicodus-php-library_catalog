@@ -8,11 +8,11 @@
         private $genre;
 
 //Constructor
-        function __construct($id, $title, $genre)
+        function __construct($title, $genre, $id = null)
         {
-            $this->id = $id;
             $this->title = $title;
             $this->genre = $genre;
+            $this->id = $id;
         }
 
 //Getter and Setter Methods
@@ -60,7 +60,24 @@
             $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->id};");
         }
 
+        function addtoAuthorsList()
+        {
 
+        }
+        function deleteFromAuthorsList()
+        {
+
+        }
+
+        function getAuthorsList()
+        {
+
+        }
+
+        function deleteAllAuthorsList()
+        {
+
+        }
 
 
 //Static Methods
@@ -72,7 +89,7 @@
                 $id = $book['id'];
                 $title = $book['title'];
                 $genre = $book['genre'];
-                $new_book = new Book($id, $title, $genre);
+                $new_book = new Book($title, $genre, $id);
                 array_push($all_books, $new_book);
             }
             return $all_books;

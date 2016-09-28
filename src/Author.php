@@ -7,10 +7,10 @@
     private $name;
 
 //Constructor
-    function __construct($id = null, $name)
+    function __construct($name, $id = null)
     {
-        $this->id = $id;
         $this->name = $name;
+        $this->id = $id;
     }
 
 //Getter and Setter Methods
@@ -74,7 +74,7 @@
         foreach($authors as $author){
             $id = $author['id'];
             $name = $author['name'];
-            $new_author = new Author($id, $name);
+            $new_author = new Author($name, $id);
             array_push($all_authors, $new_author);
         }
         return $all_authors;
