@@ -16,25 +16,32 @@
     {
         protected function tearDown()
         {
-            Author::deleteAll();
-            Book::deleteAll();
-            Copy::deleteAll();
-            Patron::deleteAll();
-            Checkout::deleteAll();
+            // Author::deleteAll();
+            // Book::deleteAll();
+            // Copy::deleteAll();
+            // Patron::deleteAll();
+            // Checkout::deleteAll();
         }
 
-        function test_someFunction()
+        function test_getId()
         {
             //Arrange
-
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
 
             //Act
-
+            $result = $test_book->getId();
 
             //Assert
+            $this->assertEquals(1, $result);
+        }
 
 
-       }
+
+
+
 
 //End Test
     }
