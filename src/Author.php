@@ -38,12 +38,12 @@
 
     function update()
     {
-
+        $GLOBALS['DB']->exec("UPDATE authors SET name = '{$this->name}' WHERE id = {$this->id};");
     }
 
     function delete()
     {
-
+        $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->id};");
     }
 
     function addToBooksList()

@@ -125,6 +125,41 @@
             $this->assertEquals($test_author2, $result);
         }
 
+        function test_update()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($id, $name);
+            $test_author->save();
+
+            $new_name = "Katy Henning";
+            $test_author->setName($new_name);
+
+            //Act
+
+            $test_author->update();
+            $result = Author::getAll();
+
+            //Assert
+            $this->assertEquals([$test_author], $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($id, $name);
+            $test_author->save();
+
+            // Act
+            $test_author->delete();
+            $result = Author::getAll();
+
+            // Assert
+            $this->assertEquals([], $result);
+        }
 
 
 
