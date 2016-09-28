@@ -38,7 +38,69 @@
             $this->assertEquals(1, $result);
         }
 
+        function test_getTitle()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
 
+            //Act
+            $result = $test_book->getTitle();
+
+            //Assert
+            $this->assertEquals($title, $result);
+        }
+
+        function test_getGenre()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+
+            //Act
+            $result = $test_book->getGenre();
+
+            //Assert
+            $this->assertEquals($genre, $result);
+        }
+
+        function test_setTitle()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+
+            //Act
+            $new_title = "City Book";
+            $test_book->setTitle($new_title);
+            $result = $test_book->getTitle();
+
+            //Assert
+            $this->assertEquals($new_title, $result);
+        }
+
+        function test_setGenre()
+        {
+            //Arrange
+            $id = 1;
+            $title = "Jungle Book";
+            $genre = "childrens";
+            $test_book = new Book($id, $title, $genre);
+
+            //Act
+            $new_genre = "Awesome";
+            $test_book->setGenre($new_genre);
+            $result = $test_book->getGenre();
+
+            //Assert
+            $this->assertEquals($new_genre, $result);
+        }
 
 
 

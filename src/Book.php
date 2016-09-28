@@ -23,22 +23,22 @@
 
         function getTitle()
         {
-
+            return $this->title;
         }
 
         function getGenre()
         {
-
+            return $this->genre;
         }
 
-        function setTitle()
+        function setTitle($new_title)
         {
-
+            $this->title = $new_title;
         }
 
-        function setGenre()
+        function setGenre($new_genre)
         {
-
+            $this->genre = $new_genre;
         }
 
 //Regular Methods
