@@ -20,7 +20,7 @@
             Book::deleteAll();
             Copy::deleteAll();
             Patron::deleteAll();
-            // Checkout::deleteAll();
+            Checkout::deleteAll();
         }
 
         function test_getId()

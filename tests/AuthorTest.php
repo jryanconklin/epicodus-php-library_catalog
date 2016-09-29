@@ -12,7 +12,6 @@
     require_once __DIR__."/../src/Copy.php";
     require_once __DIR__."/../src/Checkout.php";
 
-
     class AuthorTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
@@ -21,7 +20,7 @@
             Book::deleteAll();
             Copy::deleteAll();
             Patron::deleteAll();
-            // Checkout::deleteAll();
+            Checkout::deleteAll();
         }
 
         function test_getId()
@@ -209,8 +208,63 @@
             $this->assertEquals([$test_book], $result);
         }
 
+        function test_deleteBookList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
 
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
 
+            $title2 = "The Hobbit";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($title2, $genre2, $id);
+            $test_book2->save();
+
+            //Act
+            $test_author->addToBookList($test_book);
+            $test_author->addToBookList($test_book2);
+
+            $test_author->deleteAllBookList();
+            $result = $test_author->getBookList();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
+        function test_deleteFromBookList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+            $title2 = "The Hobbit";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($title2, $genre2, $id);
+            $test_book2->save();
+
+            //Act
+            $test_author->addToBookList($test_book);
+            $test_author->addToBookList($test_book2);
+
+            $test_author->deleteFromBookList($test_book2);
+            $result = $test_author->getBookList();
+
+            //Assert
+            $this->assertEquals([$test_book], $result);
+        }
 
 
 //End Test
