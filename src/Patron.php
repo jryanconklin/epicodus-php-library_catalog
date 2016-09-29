@@ -64,8 +64,13 @@
 
         function addToCopyList($copy)
         {
+            $due_date = "2016/12/31";
+            $available = $copy->getAvailable();
+            $status = $available;
+            var_dump($status);
+
             // adds a patron to the copy list
-            $GLOBALS['DB']->exec("INSERT INTO checkouts (patron_id, copy_id) VALUES ({$this->id}, {$copy->getId()})");
+            $GLOBALS['DB']->exec("INSERT INTO checkouts (patron_id, copy_id, due_date, status) VALUES ({$this->id}, {$copy->getId()}, '{$due_date}', {$status} );");
         }
 
         function deleteFromCopyList($copy)
@@ -78,6 +83,8 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE patron_id = {$this->id};");
         }
+
+
 
 //Static Methods
         static function getAll()

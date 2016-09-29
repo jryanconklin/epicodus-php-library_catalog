@@ -57,13 +57,23 @@
         function getPatronList()
         {
             // Returns the Patrons List by Copy
-
+            $results = $GLOBALS['DB']->query(
+            "SELECT patron.id FROM patrons
+                JOIN checkouts ON (patron.id = checkout.patron_id)
+                JOIN copies ON (checkout.copy_id = copies.id)
+            WHERE copy.id = {$this->id};");
+            $copy_list = array();
+            foreach($results as $result) {
+                $new_copy = Copy::findById($result['id']);
+                array_push($copy_list, $new_copy);
+            }
+             return $copy_list;
         }
 
         function addToPatronList($patron)
         {
-            // Adds a Copy to the Patrons List
-
+            // // Adds a Copy to the Patrons List
+            // $GLOBALS['DB']->exec("INSERT INTO checkouts (status, due_date, patron_id, copy_id, status, due_date) VALUES '($patron->status)';");
         }
 
         function deleteFromPatronList($patron)
