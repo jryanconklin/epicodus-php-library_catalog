@@ -60,23 +60,39 @@
             $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->id};");
         }
 
-        function addtoAuthorsList()
+        function getAuthorList()
         {
-
+            //returns all author list by book
+            $results = $GLOBALS['DB']->query(
+            "SELECT authors.id FROM authors
+                JOIN works ON (authors.id = works.author_id)
+                JOIN books ON (works.book_id = books.id)
+            WHERE books.id = {$this->id};");
+            $author_list = array();
+            foreach($results as $result) {
+                $new_author = Author::findById($result['id']);
+                array_push($author_list, $new_author);
+            }
+            return $author_list;
         }
-        function deleteFromAuthorsList()
-        {
 
+        function addToAuthorList($author)
+        {
+            // adds a author to the books list
+            $GLOBALS['DB']->exec("INSERT INTO works (author_id, book_id) VALUES ({$author->getId()}, {$this->id});");
         }
 
-        function getAuthorsList()
+        function deleteFromAuthorList($author)
         {
-
+            //deletes an author from books list
+            $GLOBALS['DB']->exec("DELETE FROM works WHERE book_id = {$this->id} AND author_id = {$author->getId()};");
         }
 
-        function deleteAllAuthorsList()
-        {
 
+        function deleteAllAuthorList()
+        {
+            //deletes all authors from books author list
+            $GLOBALS['DB']->exec("DELETE FROM works WHERE book_id = {$this->id};");
         }
 
 

@@ -203,6 +203,116 @@
             $this->assertEquals([$test_book2], $result);
         }
 
+        function test_getAuthorList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $id2 = null;
+            $name2 = "Christopher Tolkien";
+            $test_author2 = new Author($name2, $id2);
+            $test_author2->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+
+            //Act
+            $test_book->addToAuthorList($test_author);
+            $test_book->addToAuthorList($test_author2);
+            $result = $test_book->getAuthorList();
+
+            //Assert
+            $this->assertEquals([$test_author, $test_author2], $result);
+        }
+
+        function test_addToAuthorList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $id2 = null;
+            $name2 = "Christopher Tolkien";
+            $test_author2 = new Author($name2, $id2);
+            $test_author2->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+
+            //Act
+            $test_book->addToAuthorList($test_author);
+            $result = $test_book->getAuthorList();
+
+            //Assert
+            $this->assertEquals([$test_author], $result);
+        }
+
+        function test_deleteAllAuthorList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $name2 = "JRR Tolkien";
+            $test_author2 = new Author($name2, $id);
+            $test_author2->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+            //Act
+            $test_book->addToAuthorList($test_author);
+            $test_book->addToAuthorList($test_author2);
+
+            $test_book->deleteAllAuthorList();
+            $result = $test_book->getAuthorList();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
+        function test_deleteFromAuthorList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $name2 = "JRR Tolkien";
+            $test_author2 = new Author($name2, $id);
+            $test_author2->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+            //Act
+            $test_book->addToAuthorList($test_author);
+            $test_book->addToAuthorList($test_author2);
+
+            $test_book->deleteFromAuthorList($test_author);
+            $result = $test_book->getAuthorList();
+
+            //Assert
+            $this->assertEquals([$test_author2], $result);
+        }
 
 //End Test
     }
