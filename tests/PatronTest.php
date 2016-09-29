@@ -209,7 +209,7 @@
             $this->assertEquals([$test_copy], $result);
         }
 
-        function test_deleteCopyList()
+        function test_deleteAllCopyList()
         {
             //Arrange
             $id = null;

@@ -54,23 +54,27 @@
             $GLOBALS['DB']->exec("DELETE FROM copies WHERE id = {$this->getId()};");
         }
 
-        function addToPatronsList()
+        function getPatronList()
         {
+            // Returns the Patrons List by Copy
 
         }
 
-        function deleteFromPatronsList()
+        function addToPatronList($patron)
         {
+            // Adds a Copy to the Patrons List
 
         }
 
-        function getPatronsList()
+        function deleteFromPatronList($patron)
         {
+            // Deletes a Copy from the Patrons List
 
         }
 
-        function deleteAllPatronsList()
+        function deleteAllPatronList()
         {
+            // Deletes All Copies from the Patrons List
 
         }
 
