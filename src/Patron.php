@@ -62,15 +62,25 @@
             return $copy_list;
         }
 
-        function addToCopyList($copy)
+        function checkoutBook($copy)
         {
-            $due_date = "2016/12/31";
+            //Validate Copy of Book is Available and Check Out
             $available = $copy->getAvailable();
-            $status = $available;
-            var_dump($status);
+            if ($available) {
+                $status = "CHECKED OUT";
+            } else {
+                return "UNAVAILABLE";
+            }
 
-            // adds a patron to the copy list
-            $GLOBALS['DB']->exec("INSERT INTO checkouts (patron_id, copy_id, due_date, status) VALUES ({$this->id}, {$copy->getId()}, '{$due_date}', {$status} );");
+            //Take Today's Date, Add 14 Days for Due Date
+            $today = date('Y:m:d');
+            $due_date = Date('Y:m:d', strtotime("+14 days"));
+
+            //Add Copy of Book Checked Out by Patron to Checkouts Table
+            $GLOBALS['DB']->exec("INSERT INTO checkouts (patron_id, copy_id, due_date, status) VALUES ({$this->id}, {$copy->getId()}, '{$due_date}', '{$status}');");
+
+            //Set the Copy of the Book's Availability to False
+            $copy->setAvailable(false);
         }
 
         function deleteFromCopyList($copy)

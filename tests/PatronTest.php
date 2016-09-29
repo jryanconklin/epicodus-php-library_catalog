@@ -16,27 +16,27 @@
     {
         protected function tearDown()
         {
-            Author::deleteAll();
-            Book::deleteAll();
-            Copy::deleteAll();
-            Patron::deleteAll();
-            Checkout::deleteAll();
+            // Author::deleteAll();
+            // Book::deleteAll();
+            // Copy::deleteAll();
+            // Patron::deleteAll();
+            // Checkout::deleteAll();
         }
 
-//         function test_getId()
-//         {
-//             //Arrange
-//             $id = 1;
-//             $name = "Bilbo Baggins";
-//             $test_patron = new Patron($name, $id);
-//
-//             //Act
-//             $result = $test_patron->getId();
-//
-//             //Assert
-//             $this->assertEquals(1, $result);
-//         }
-//
+        function test_getId()
+        {
+            //Arrange
+            $id = 1;
+            $name = "Bilbo Baggins";
+            $test_patron = new Patron($name, $id);
+
+            //Act
+            $result = $test_patron->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
 //         function test_getName()
 //         {
 //             //Arrange
@@ -187,27 +187,28 @@
 //             $this->assertEquals([$test_copy, $test_copy2], $result);
 //         }
 
-        function test_addToCopyList()
-        {
-            //Arrange
-            $id = null;
-            $name = "Bilbo Baggins";
-            $test_patron = new Patron($name, $id);
-            $test_patron->save();
-
-            $available = true;
-            $book_id = 2;
-            $id =1;
-            $test_copy = new Copy($available, $book_id, $id);
-            $test_copy->save();
-
-            //Act
-            $test_patron->addToCopyList($test_copy);
-            $result = $test_patron->getCopyList();
-
-            //Assert
-            $this->assertEquals([$test_copy], $result);
-        }
+        // function test_checkoutBook()
+        // {
+        //     //Arrange
+        //     $id = null;
+        //     $name = "Bilbo Baggins";
+        //     $test_patron = new Patron($name, $id);
+        //     $test_patron->save();
+        //
+        //     $available = true;
+        //     $book_id = 2;
+        //     $id =1;
+        //     $test_copy = new Copy($available, $book_id, $id);
+        //     $test_copy->save();
+        //
+        //     //Act
+        //     $test_patron->checkoutBook($test_copy);
+        //     $test_copy->update();
+        //     $result = $test_copy->getAvailable();
+        //
+        //     //Assert
+        //     $this->assertEquals(true, $result);
+        // }
 
         // function test_deleteAllCopyList()
         // {

@@ -106,10 +106,28 @@
             }
         }
 
-        // LAST BUT NOT LEAST
+        // Unfinished Idea - Should Also Check Against Status
         static function getAllOverdueBooks()
         {
+            $overdue = array();
+            $today = date('Y:m:d');
+            $checkouts = Checkout::getAll();
 
+            foreach($checkouts as $checkout) {
+                $id = $checkout['id'];
+                $patron_id = $checkout['patron_id'];
+                $copy_id = $checkout['copy_id'];
+                $due_date = $checkout['due_date'];
+                $status = $checkout['status'];
+                $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+                $date = $new_checkout->getDueDate();
+                $date = strtotime($date);
+                $date = date('m-d-Y', $date);
+                if ($date < $today) {
+                    array_push($overdue, $checkout);
+                }
+            }
+            return $overdue;
         }
 
 //End Class

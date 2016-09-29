@@ -251,6 +251,26 @@
             $this->assertEquals($checkout, $result);
         }
 
+        function test_getAllOverdueBooks()
+        {
+            //Arrange
+            $status = 'string cheese';
+            $due_date = '2012-02-01';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+
+            //Act
+            $result = Checkout::getAllOverdueBooks();
+            var_dump($result);
+
+            //Assert
+            $this->assertEquals([$checkout], $result);
+        }
+
 
 //End Test
     }
