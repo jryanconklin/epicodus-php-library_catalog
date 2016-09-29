@@ -20,7 +20,7 @@
             Book::deleteAll();
             Copy::deleteAll();
             Patron::deleteAll();
-            // Checkout::deleteAll();
+            Checkout::deleteAll();
         }
 
         function test_getId()
@@ -115,7 +115,7 @@
         {
             //Arrange
             $status = "Available";
-            $due_date = "2017-01-31";
+            $due_date = "2017-12-31";
             $patron_id = 3;
             $copy_id = 2;
             $id = 1;
@@ -130,6 +130,127 @@
             //Assert
             $this->assertEquals($new_due_date, $result);
         }
+
+        function test_save()
+        {
+            //Arrange
+            $status = 'Available';
+            $due_date = '2017-12-31';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+            //Act
+            $result = Checkout::getAll();
+
+            //Assert
+            $this->assertEquals([$checkout], $result);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $status = 'Available';
+            $due_date = '2017-12-31';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+            $status2 = 'Unvailable';
+            $due_date2 = '2018-12-31';
+            $patron_id2 = 5;
+            $copy_id2 = 4;
+            $id = null;
+            $checkout2 = new Checkout($status2, $due_date2, $patron_id2, $copy_id2, $id);
+            $checkout2->save();
+
+            //Act
+            $result = Checkout::getAll();
+
+            //Assert
+            $this->assertEquals([$checkout, $checkout2], $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $status = 'Available';
+            $due_date = '2017-12-31';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+            $status2 = 'Unvailable';
+            $due_date2 = '2018-12-31';
+            $patron_id2 = 5;
+            $copy_id2 = 4;
+            $id = null;
+            $checkout2 = new Checkout($status2, $due_date2, $patron_id2, $copy_id2, $id);
+            $checkout2->save();
+
+            //Act
+            $checkout->delete();
+            $result = Checkout::getAll();
+
+            //Assert
+            $this->assertEquals([$checkout2], $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $status = 'Available';
+            $due_date = '2017-12-31';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+            $new_status = 'Unavailable';
+            $checkout->setStatus($new_status);
+            $checkout->update();
+
+            //Act
+            $result = Checkout::getAll();
+
+            //Assert
+            $this->assertEquals([$checkout], $result);
+        }
+
+        function test_findById()
+        {
+            //Arrange
+            $status = 'Available';
+            $due_date = '2017-12-31';
+            $patron_id = 3;
+            $copy_id = 2;
+            $id = null;
+            $checkout = new Checkout($status, $due_date, $patron_id, $copy_id, $id);
+            $checkout->save();
+
+            $status2 = 'Unvailable';
+            $due_date2 = '2018-12-31';
+            $patron_id2 = 5;
+            $copy_id2 = 4;
+            $id = null;
+            $checkout2 = new Checkout($status2, $due_date2, $patron_id2, $copy_id2, $id);
+            $checkout2->save();
+
+            //Act
+            $search_id = $checkout->getId();
+            $result = Checkout::findById($search_id);
+
+            //Assert
+            $this->assertEquals($checkout, $result);
+        }
+
 
 
 
