@@ -46,24 +46,36 @@
             $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->id};");
         }
 
-        function addToBooksList()
+        function getBookList()
         {
-
+            // returns the books list by author
+            $results = $GLOBALS['DB']->query(
+            "SELECT books.id FROM books
+                JOIN works ON (books.id = works.book_id)
+                JOIN authors ON (works.author_id = authors.id)
+            WHERE authors.id = {$this->id};");
+            $book_list = array();
+            foreach($results as $result) {
+                $new_book = Book::findById($result['id']);
+                array_push($book_list, $new_book);
+            }
+             return $book_list;
         }
 
-        function deleteFromBooksList()
+        function addToBookList($book)
         {
-
+            // adds a book to the author list
+            $GLOBALS['DB']->exec("INSERT INTO works (author_id, book_id) VALUES ({$this->id}, {$book->getId()});");
         }
 
-        function getBooksList()
+        function deleteFromBookList()
         {
-
+            // deletes a book from the authors list
         }
 
-        function deleteAllBooksList()
+        function deleteAllBookList()
         {
-
+            // deletes all books from the authors book list
         }
 
 //Static Methods

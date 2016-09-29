@@ -161,6 +161,56 @@
             $this->assertEquals([], $result);
         }
 
+        function test_getBookList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+            $title2 = "The Hobbit";
+            $genre2 = "Fantasy";
+            $test_book2 = new Book($title2, $genre2, $id);
+            $test_book2->save();
+
+            //Act
+            $test_author->addToBookList($test_book);
+            $test_author->addToBookList($test_book2);
+            $result = $test_author->getBookList();
+
+            //Assert
+            $this->assertEquals([$test_book, $test_book2], $result);
+        }
+
+        function test_addToBookList()
+        {
+            //Arrange
+            $id = null;
+            $name = "JRR Tolkien";
+            $test_author = new Author($name, $id);
+            $test_author->save();
+
+            $title = "Lord of the Rings";
+            $genre = "Fantasy";
+            $test_book = new Book($title, $genre, $id);
+            $test_book->save();
+
+            //Act
+            $test_author->addToBookList($test_book);
+            $result = $test_author->getBookList();
+
+            //Assert
+            $this->assertEquals([$test_book], $result);
+        }
+
+
+
 
 
 //End Test
