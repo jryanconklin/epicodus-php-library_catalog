@@ -64,19 +64,19 @@
 
         function addToBookList($book)
         {
-            // adds a book to the author list
+            // adds a author to the book list
             $GLOBALS['DB']->exec("INSERT INTO works (author_id, book_id) VALUES ({$this->id}, {$book->getId()});");
         }
 
         function deleteFromBookList($book)
         {
-            // deletes a book from the authors list
+            // deletes a author from the book list
             $GLOBALS['DB']->exec("DELETE FROM works WHERE author_id = {$this->id} AND book_id = {$book->getId()};");
         }
 
         function deleteAllBookList()
         {
-            // deletes all books from the authors book list
+            // deletes all authors from the authors book list
             $GLOBALS['DB']->exec("DELETE FROM works WHERE author_id = {$this->id};");
         }
 

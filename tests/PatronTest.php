@@ -158,6 +158,116 @@
             // Assert
             $this->assertEquals([], $result);
         }
+//Start New Tests
+        function test_getCopyList()
+        {
+            //Arrange
+            $id = null;
+            $name = "Bilbo Baggins";
+            $test_patron = new Patron($name, $id);
+            $test_patron->save();
+
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            $available2 = true;
+            $book_id2 = 2;
+            $test_copy2 = new Copy($available2, $book_id2, $id);
+            $test_copy2->save();
+
+            //Act
+            $test_patron->addToCopyList($test_copy);
+            $test_patron->addToCopyList($test_copy2);
+            $result = $test_patron->getCopyList();
+
+            //Assert
+            $this->assertEquals([$test_copy, $test_copy2], $result);
+        }
+
+        function test_addToCopyList()
+        {
+            //Arrange
+            $id = null;
+            $name = "Bilbo Baggins";
+            $test_patron = new Patron($name, $id);
+            $test_patron->save();
+
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            //Act
+            $test_patron->addToCopyList($test_copy);
+            $result = $test_patron->getCopyList();
+
+            //Assert
+            $this->assertEquals([$test_copy], $result);
+        }
+
+        function test_deleteCopyList()
+        {
+            //Arrange
+            $id = null;
+            $name = "Bilbo Baggins";
+            $test_patron = new Patron($name, $id);
+            $test_patron->save();
+
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            $available2 = true;
+            $book_id2 = 2;
+            $test_copy2 = new Copy($available2, $book_id2, $id);
+            $test_copy2->save();
+
+            //Act
+            $test_patron->addToCopyList($test_copy);
+            $test_patron->addToCopyList($test_copy2);
+
+            $test_patron->deleteAllCopyList();
+            $result = $test_patron->getCopyList();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
+        function test_deleteFromCopyList()
+        {
+            //Arrange
+            $id = null;
+            $name = "Bilbo Baggins";
+            $test_patron = new Patron($name, $id);
+            $test_patron->save();
+
+            $available = true;
+            $book_id = 2;
+            $id =1;
+            $test_copy = new Copy($available, $book_id, $id);
+            $test_copy->save();
+
+            $available2 = true;
+            $book_id2 = 2;
+            $test_copy2 = new Copy($available2, $book_id2, $id);
+            $test_copy2->save();
+
+            //Act
+            $test_patron->addToCopyList($test_copy);
+            $test_patron->addToCopyList($test_copy2);
+
+            $test_patron->deleteFromCopyList($test_copy2);
+            $result = $test_patron->getCopyList();
+
+            //Assert
+            $this->assertEquals([$test_copy], $result);
+        }
 
 
 

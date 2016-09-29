@@ -46,24 +46,37 @@
             $GLOBALS['DB']->exec("DELETE FROM patrons WHERE id = {$this->id};");
         }
 
-        function addToCopiesList()
+        function getCopyList()
         {
-
+            // Returns the Copies List by Patron
+            $results = $GLOBALS['DB']->query(
+            "SELECT copies.id FROM copies
+                JOIN checkouts ON (copies.id = checkouts.copy_id)
+                JOIN patrons ON (checkouts.patron_id = patrons.id)
+            WHERE patrons.id = {$this->id};");
+            $copy_list = array();
+            foreach($results as $result) {
+                $new_copy = Copy::findById($result['id']);
+                array_push($copy_list, $new_copy);
+            }
+            return $copy_list;
         }
 
-        function deleteFromCopiesList()
+        function addToCopyList($copy)
         {
-
+            // adds a patron to the copy list
+            $GLOBALS['DB']->exec("INSERT INTO checkouts (patron_id, copy_id) VALUES ({$this->id}, {$copy->getId()})");
         }
 
-        function getCopiesList()
+        function deleteFromCopyList($copy)
         {
-
+            // deletes a patron from the copy list
+            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE patron_id = {$this->id} AND copy_id = {$copy->getId()};");
         }
 
-        function deleteAllCopiesList()
+        function deleteAllCopyList()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE patron_id = {$this->id};");
         }
 
 //Static Methods
