@@ -18,8 +18,8 @@
         {
             Author::deleteAll();
             Book::deleteAll();
-            // Copy::deleteAll();
-            // Patron::deleteAll();
+            Copy::deleteAll();
+            Patron::deleteAll();
             // Checkout::deleteAll();
         }
 

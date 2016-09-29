@@ -20,7 +20,7 @@
             Author::deleteAll();
             Book::deleteAll();
             Copy::deleteAll();
-            // Patron::deleteAll();
+            Patron::deleteAll();
             // Checkout::deleteAll();
         }
 

@@ -15,9 +15,6 @@
             $this->id = $id;
         }
 
-
-
-
 //Getter and Setter Methods
         function getId()
         {
@@ -57,6 +54,25 @@
             $GLOBALS['DB']->exec("DELETE FROM copies WHERE id = {$this->getId()};");
         }
 
+        function addToPatronsList()
+        {
+
+        }
+
+        function deleteFromPatronsList()
+        {
+
+        }
+
+        function getPatronsList()
+        {
+
+        }
+
+        function deleteAllPatronsList()
+        {
+
+        }
 
 
 
